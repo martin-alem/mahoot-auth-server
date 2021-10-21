@@ -5,5 +5,4 @@ class Errorhandler extends Error {
     return this;
   }
 }
-
 export default Errorhandler;
