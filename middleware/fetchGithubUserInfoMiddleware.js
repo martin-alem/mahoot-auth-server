@@ -16,16 +16,16 @@ async function fetchUserInfoMiddleware(req, res, next) {
     if (userProfile.statusText === "OK" && userProfile.status === 200) {
       const { name, avatar_url: image, email } = userProfile.data;
       if (email === null) {
-        next(new Errorhandler("Your github has no email address consider using LinkedIn", 400));
+        res.status(200).json({ status: "partial", statusCode: 200, message: "You Github account email address is private. consider using LinkedIn" });
+      } else {
+        const [firstName, lastName] = name.split(" ");
+        req.body.userProfile = { firstName, lastName, image };
+        req.body.userEmail = { emailAddress: email };
+        next();
       }
-      const [firstName, lastName] = name.split(" ");
-      req.body.userProfile = { firstName, lastName, image };
-      req.body.userEmail = { emailAddress: email };
     } else {
       next(new Errorhandler("Unable to fetch user profile", 403));
     }
-
-    next();
   } catch (error) {
     Logger.log("error", error, import.meta.url);
     next(new Errorhandler("Internal server error", 500));
