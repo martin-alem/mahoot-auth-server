@@ -1,6 +1,6 @@
 import Errorhandler from "./../utils/Errorhandler.js";
 import Logger from "./../utils/Logger.js";
-import User from "./../model/User.js";
+import User from "./../model/UserModel.js";
 import { findOne, insertOne, findAndUpdate } from "./../database/query.js";
 
 async function checkUserMiddleware(req, res, next) {

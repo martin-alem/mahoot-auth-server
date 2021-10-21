@@ -1,5 +1,5 @@
 import Errorhandler from "./../utils/Errorhandler.js";
-import Logger from "./../utils/Logger.js"
+import Logger from "./../utils/Logger.js";
 
 function checkStateMiddleware(req, res, next) {
   try {
@@ -9,8 +9,7 @@ function checkStateMiddleware(req, res, next) {
     } else {
       next();
     }
-  } catch (error)
-  {
+  } catch (error) {
     Logger.log("error", error, import.meta.url);
     next(new Errorhandler("Internal server error", 500));
   }
