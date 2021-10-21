@@ -15,6 +15,9 @@ async function fetchUserInfoMiddleware(req, res, next) {
     const userProfile = await fetch(profileUrl, method, option);
     if (userProfile.statusText === "OK" && userProfile.status === 200) {
       const { name, avatar_url: image, email } = userProfile.data;
+      if (email === null) {
+        next(new Errorhandler("Your github has no email address consider using LinkedIn", 400));
+      }
       const [firstName, lastName] = name.split(" ");
       req.body.userProfile = { firstName, lastName, image };
       req.body.userEmail = { emailAddress: email };
