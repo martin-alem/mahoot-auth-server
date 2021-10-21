@@ -20,11 +20,14 @@ var corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.status(200).json({ status: 200, statusText: "OK", message: "Authentication server up and running" });
+});
+
 app.use("/api/v1/linkedin/", linkedinRouter);
 app.use("/api/v1/github/", githubRouter);
 
-
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log("listening on port: " + PORT);
+  console.log("Authentication server listening on port: " + PORT);
 });
