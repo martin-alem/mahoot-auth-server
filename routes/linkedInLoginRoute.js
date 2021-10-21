@@ -9,8 +9,9 @@ const router = express.Router();
 
 router.post("/linkedin/auth", [checkStateMiddleware, fetchAccessTokenMiddleware, fetchUserInfoMiddleware, checkUserMiddleware, linkedInLoginController]);
 
-router.all("*", (error, req, res, next) => {
-  res.json({ status: 404, error: error.message });
+router.use((error, req, res, next) => {
+  console.log(error);
+  res.status(error.statusCode).json({ status: "fail", statusCode: error.statusCode, message: error.message });
 });
 
 export default router;

@@ -1,4 +1,6 @@
 import fetch from "./../utils/fetch.js";
+import Errorhandler from "./../utils/Errorhandler.js";
+import Logger from "./../utils/Logger.js"
 
 async function fetchAccessTokenMiddleware(req, res, next) {
   try {
@@ -20,14 +22,14 @@ async function fetchAccessTokenMiddleware(req, res, next) {
     const response = await fetch(url, method, option);
 
     if (response.status !== 200) {
-      next(new Error("Couldn't fetch access token"));
+      next(new Errorhandler("Could not fetch access token", 403));
     } else {
       req.body.data = response.data;
       next();
     }
   } catch (error) {
-    console.log(error);
-    next(new Error("Internal server error"));
+    Logger.log("error", error, import.meta.url);
+    next(new Errorhandler("Internal server error", 500));
   }
 }
 

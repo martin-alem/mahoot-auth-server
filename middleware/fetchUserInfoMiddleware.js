@@ -1,3 +1,5 @@
+import Errorhandler from "./../utils/Errorhandler.js";
+import Logger from "./../utils/Logger.js"
 import fetch from "../utils/fetch.js";
 import { extractProfileData, extractEmailData } from "../utils/extractData.js";
 
@@ -17,18 +19,18 @@ async function fetchUserInfoMiddleware(req, res, next) {
     if (userProfile.statusText === "OK") {
       req.body.userProfile = extractProfileData(userProfile.data);
     } else {
-      next(new Error("Couldn't fetch user profile'"));
+      next(new Errorhandler("Unable to fetch user profile", 403));
     }
 
     if (userEmail.statusText === "OK") {
       req.body.userEmail = extractEmailData(userEmail.data);
     } else {
-      next(new Error("Couldn't fetch user profile'"));
+      next(new Errorhandler("Unable to fetch user email", 403));
     }
     next();
   } catch (error) {
-    console.log(error);
-    next(error.message);
+    Logger.log("error", error, import.meta.url);
+    next(new Errorhandler("Internal server error", 500));
   }
 }
 
