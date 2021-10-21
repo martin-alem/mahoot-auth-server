@@ -27,6 +27,10 @@ app.get("/", (req, res) => {
 app.use("/api/v1/linkedin/", linkedinRouter);
 app.use("/api/v1/github/", githubRouter);
 
+app.all("*", (req, res) => {
+  res.status(404).json({ status: 404, statusText: "fail", message: "The path you are requesting does not exist" });
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log("Authentication server listening on port: " + PORT);
