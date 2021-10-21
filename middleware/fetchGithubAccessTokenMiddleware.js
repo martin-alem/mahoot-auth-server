@@ -1,5 +1,5 @@
 import fetch from "./../utils/fetch.js";
-import Errorhandler from "./../utils/Errorhandler.js";
+import Errorhandler from "./../utils/ErrorHandler.js";
 import Logger from "./../utils/Logger.js";
 
 async function fetchGithubAccessTokenMiddleware(req, res, next) {

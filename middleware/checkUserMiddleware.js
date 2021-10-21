@@ -1,4 +1,4 @@
-import Errorhandler from "./../utils/Errorhandler.js";
+import Errorhandler from "./../utils/ErrorHandler.js";
 import Logger from "./../utils/Logger.js";
 import User from "./../model/UserModel.js";
 import { findOne, insertOne, findAndUpdate } from "./../database/query.js";

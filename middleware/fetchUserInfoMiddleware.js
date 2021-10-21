@@ -1,4 +1,4 @@
-import Errorhandler from "./../utils/Errorhandler.js";
+import Errorhandler from "./../utils/ErrorHandler.js";
 import Logger from "./../utils/Logger.js"
 import fetch from "../utils/fetch.js";
 import { extractProfileData, extractEmailData } from "../utils/extractData.js";
