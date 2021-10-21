@@ -5,7 +5,9 @@ import { findOne, insertOne, findAndUpdate } from "./../database/query.js";
 
 async function checkUserMiddleware(req, res, next) {
   try {
-    const user = ({ firstName, lastName, emailAddress, image } = req.body.userProfile);
+    const { firstName, lastName, image } = req.body.userProfile;
+    const {emailAddress }= req.body.userEmail;
+    const user = { firstName, lastName, emailAddress, image}
     const result = await findOne(User, { emailAddress: emailAddress });
     if (!result) {
       const newUser = await insertOne(User, user);
