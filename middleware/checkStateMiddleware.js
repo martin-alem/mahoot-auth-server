@@ -1,4 +1,4 @@
-function checkState(req, res, next) {
+function checkStateMiddleware(req, res, next) {
   const state = req.body.state;
   if (state !== process.env.STATE) {
     next(new Error("Invalid state"));
@@ -7,4 +7,4 @@ function checkState(req, res, next) {
   }
 }
 
-export default checkState;
+export default checkStateMiddleware;
