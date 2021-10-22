@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-async function connectToSmackDatabase() {
+async function connectToMahootDatabase() {
   const options = { keepAlive: true, keepAliveInitialDelay: 300000 };
   try {
     mongoose.connection.on("connecting", () => console.log("Connecting to Mongodb..."));
@@ -13,4 +13,4 @@ async function connectToSmackDatabase() {
   }
 }
 
-export { connectToSmackDatabase };
+export default connectToMahootDatabase;

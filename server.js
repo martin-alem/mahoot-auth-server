@@ -1,14 +1,14 @@
 import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
-import { connectToSmackDatabase } from "./database/connection.js";
+import connectToMahootDatabase from "./database/connection.js";
 import linkedinRouter from "./routes/linkedInLoginRoute.js";
 import githubRouter from "./routes/githubLoginRoute.js";
 
 dotenv.config();
 
 //connect to smack database
-connectToSmackDatabase();
+connectToMahootDatabase();
 
 const app = express();
 
