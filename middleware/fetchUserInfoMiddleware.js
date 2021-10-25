@@ -1,11 +1,9 @@
 import Errorhandler from "./../utils/ErrorHandler.js";
-import Logger from "./../utils/Logger.js"
+import Logger from "./../utils/Logger.js";
 import fetch from "../utils/fetch.js";
 import { extractProfileData, extractEmailData } from "../utils/extractData.js";
 
-async function fetchUserInfoMiddleware(req, res, next)
-{
-  console.log("INSIDE FETCH USER LinkedIn INFO MIDDLEWARE");
+async function fetchUserInfoMiddleware(req, res, next) {
   try {
     const profileUrl = "https://api.linkedin.com/v2/me?projection=(id,firstName,lastName,profilePicture(displayImage~:playableStreams))";
     const emailUrl = "https://api.linkedin.com/v2/emailAddress?q=members&projection=(elements*(handle~))";

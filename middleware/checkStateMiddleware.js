@@ -1,9 +1,7 @@
 import Errorhandler from "./../utils/ErrorHandler.js";
 import Logger from "./../utils/Logger.js";
 
-function checkStateMiddleware(req, res, next)
-{
-  console.log("INSIDE CHECK STATUS MIDDLEWARE")
+function checkStateMiddleware(req, res, next) {
   try {
     const state = req.body.state;
     if (state !== process.env.STATE) {

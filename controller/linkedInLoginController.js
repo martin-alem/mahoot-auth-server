@@ -3,7 +3,6 @@ import Logger from "./../utils/Logger.js";
 import jwt from "jsonwebtoken";
 
 function linkedInLoginController(req, res, next) {
-  console.log("INSIDE LINKEDIN LOGIN CONTROLLER");
   try {
     const user = req.body.user;
     const accessToken = jwt.sign({ user_id: user["_id"] }, process.env.JWT_SECRET, { expiresIn: "1h" });
