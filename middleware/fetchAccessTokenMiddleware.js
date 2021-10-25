@@ -2,7 +2,9 @@ import fetch from "./../utils/fetch.js";
 import Errorhandler from "./../utils/ErrorHandler.js";
 import Logger from "./../utils/Logger.js"
 
-async function fetchAccessTokenMiddleware(req, res, next) {
+async function fetchAccessTokenMiddleware(req, res, next)
+{
+  console.log("INSIDE FETCH ACCESS TOKEN MIDDLEWARE");
   try {
     const url = "https://www.linkedin.com/oauth/v2/accessToken";
     const method = "POST";

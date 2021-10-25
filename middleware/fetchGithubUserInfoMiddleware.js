@@ -2,7 +2,9 @@ import Errorhandler from "./../utils/ErrorHandler.js";
 import Logger from "./../utils/Logger.js";
 import fetch from "../utils/fetch.js";
 
-async function fetchUserInfoMiddleware(req, res, next) {
+async function fetchUserInfoMiddleware(req, res, next)
+{
+  console.log("INSIDE FETCH USER GITHUB INFO MIDDLEWARE");
   try {
     const profileUrl = "https://api.github.com/user";
     const method = "GET";

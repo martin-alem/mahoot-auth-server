@@ -2,7 +2,9 @@ import fetch from "./../utils/fetch.js";
 import Errorhandler from "./../utils/ErrorHandler.js";
 import Logger from "./../utils/Logger.js";
 
-async function fetchGithubAccessTokenMiddleware(req, res, next) {
+async function fetchGithubAccessTokenMiddleware(req, res, next)
+{
+  console.log("INSIDE FETCH GITHUB ACCESS TOKEN MIDDLEWARE");
   try {
     const url = `https://github.com/login/oauth/access_token?client_id=${process.env.GH_CLIENT_ID}&client_secret=${process.env.GH_CLIENT_SECRET}&code=${req.body.code}`;
     const method = "POST";

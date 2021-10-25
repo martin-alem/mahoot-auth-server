@@ -3,7 +3,9 @@ import Logger from "./../utils/Logger.js";
 import User from "./../model/UserModel.js";
 import { findOne, insertOne, findAndUpdate } from "./../database/query.js";
 
-async function checkUserMiddleware(req, res, next) {
+async function checkUserMiddleware(req, res, next)
+{
+  console.log("INSIDE CHECK USER MIDDLEWARE");
   try {
     const { firstName, lastName, image } = req.body.userProfile;
     const {emailAddress }= req.body.userEmail;
