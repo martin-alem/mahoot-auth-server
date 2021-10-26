@@ -1,4 +1,6 @@
 import dotenv from "dotenv";
+import https from "https";
+import fs from "fs";
 import express from "express";
 import cors from "cors";
 import connectToMahootDatabase from "./database/connection.js";
@@ -7,11 +9,18 @@ import githubRouter from "./routes/githubLoginRoute.js";
 
 dotenv.config();
 
-//7a8eygCEgaF2fEK
+//RYN6E8UaRySqn6r
 //connect to smack database
 connectToMahootDatabase();
 
 const app = express();
+
+const options = {
+  key: fs.readFileSync("./private/key.pem"),
+  cert: fs.readFileSync("./private/cert.pem"),
+};
+
+const httpsServer = https.createServer(options, app);
 
 var corsOptions = {
   origin: true,
@@ -37,6 +46,6 @@ app.all("*", (req, res) => {
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
+httpsServer.listen(PORT, () => {
   console.log("Authentication server listening on port: " + PORT);
 });
