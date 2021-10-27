@@ -1,6 +1,4 @@
 import dotenv from "dotenv";
-import https from "https";
-import fs from "fs";
 import express from "express";
 import cors from "cors";
 import connectToMahootDatabase from "./database/connection.js";
@@ -14,13 +12,6 @@ dotenv.config();
 connectToMahootDatabase();
 
 const app = express();
-
-const options = {
-  key: fs.readFileSync("./private/key.pem"),
-  cert: fs.readFileSync("./private/cert.pem"),
-};
-
-const httpsServer = https.createServer(options, app);
 
 var corsOptions = {
   origin: true,
@@ -46,6 +37,6 @@ app.all("*", (req, res) => {
 });
 
 const PORT = process.env.PORT || 5000;
-httpsServer.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log("Authentication server listening on port: " + PORT);
 });
