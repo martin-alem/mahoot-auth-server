@@ -7,8 +7,6 @@ import githubRouter from "./routes/githubLoginRoute.js";
 
 dotenv.config();
 
-//RYN6E8UaRySqn6r
-//connect to smack database
 connectToMahootDatabase();
 
 const app = express();
